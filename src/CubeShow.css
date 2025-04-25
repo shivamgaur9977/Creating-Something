@@ -1,0 +1,133 @@
+body {
+    background: linear-gradient(to bottom, rgba(237, 59, 151, 1), rgba(233, 83, 70, 1));
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.scene {
+    width: 200px;
+    height: 200px;
+    perspective: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+}
+
+/* Main Rotating Cube */
+.cube {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 8s infinite linear;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Cube Faces (Hidden, only edges visible) */
+.face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Face Positions */
+.front  { transform: translateZ(50px); }
+.back   { transform: rotateY(180deg) translateZ(50px); }
+.right  { transform: rotateY(90deg) translateZ(50px); }
+.left   { transform: rotateY(-90deg) translateZ(50px); }
+.top    { transform: rotateX(90deg) translateZ(50px); }
+.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+/* Outer Edges (Initially Hidden) */
+.edges {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Individual Edge Frames */
+.edge {
+    position: absolute;
+    opacity:0;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    border: 1px solid white;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; /* Smooth opening effect */
+}
+
+/* Initial Edge Positions */
+.edge-front  { transform: translateZ(60px); }
+.edge-back   { transform: rotateY(180deg) translateZ(60px); }
+.edge-right  { transform: rotateY(90deg) translateZ(60px); }
+.edge-left   { transform: rotateY(-90deg) translateZ(60px); }
+.edge-top    { transform: rotateX(90deg) translateZ(60px); }
+.edge-bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+/* Hover Effect: Smooth Extract & Rotate */
+/* .cube:hover .edges {
+    opacity: 1;
+    transform: scale(1.1);
+    .edge {
+        opacity: 1;
+    }
+} */
+
+/* Increase the gap with smooth effect */
+/* .cube:hover .edge-front  { transform: translateZ(120px) scale(1.2); }
+.cube:hover .edge-back   { transform: rotateY(180deg) translateZ(120px) scale(1.2); }
+.cube:hover .edge-right  { transform: rotateY(90deg) translateZ(120px) scale(1.2); }
+.cube:hover .edge-left   { transform: rotateY(-90deg) translateZ(120px) scale(1.2); }
+.cube:hover .edge-top    { transform: rotateX(90deg) translateZ(120px) scale(1.2); }
+.cube:hover .edge-bottom { transform: rotateX(-90deg) translateZ(120px) scale(1.2);} */
+
+/* Animation for Main Cube */
+@keyframes rotateCube {
+    0% { transform: rotateX(0) rotateY(0); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+
+.next-slide{
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    /* font-weight: bold; */
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #fcddec;
+    color: #ed3c95;
+    border: 1px solid #ed3c95;
+    transition: 0.3s;
+}
+
+.expand .edges {
+    opacity: 1;
+    transform: scale(1.1);
+    .edge {
+        opacity: 1;
+    }
+}
+
+.expand .edge-front  { transform: translateZ(120px) scale(1.2); }
+.expand .edge-back   { transform: rotateY(180deg) translateZ(120px) scale(1.2); }
+.expand .edge-right  { transform: rotateY(90deg) translateZ(120px) scale(1.2); }
+.expand .edge-left   { transform: rotateY(-90deg) translateZ(120px) scale(1.2); }
+.expand .edge-top    { transform: rotateX(90deg) translateZ(120px) scale(1.2); }
+.expand .edge-bottom { transform: rotateX(-90deg) translateZ(120px) scale(1.2);}
+
+.expand-cube {
+    background-color: #fcddec;
+    color: #ed3c95;
+    border: 1px solid #ed3c95;
+}
